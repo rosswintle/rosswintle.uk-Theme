@@ -1,10 +1,10 @@
 /*!
-Theme Name: oiko_s
-Theme URI: http://underscores.me/
-Author: Ross Wintle/Oikos Digital
-Author URI: https://oikos.digital/
-Description: Custom fork of SASSified _s WordPress starter theme at Nov 2017 with added Webpack
-Version: 1.0
+Theme Name: rosswintle
+Theme URI: http://rosswintle.uk/
+Author: Ross Wintle
+Author URI: https://rosswintle.uk/
+Description: Custom fork of _s WordPress starter theme
+Version: 0.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: oiko_s
@@ -22,6 +22,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
+# Variables
 # Normalize
 # Typography
 # Elements
@@ -41,6 +42,17 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	## Captions
 	## Galleries
 --------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Variables
+--------------------------------------------------------------*/
+:root {
+	/* Fonts */
+	--font-mono: "SF Mono", "Monaco", "Inconsolata", "Fira Mono", "Droid Sans Mono", "Source Code Pro", monospace;
+
+	/* Colours */
+	--blue: royalblue;
+}
+
 /*--------------------------------------------------------------
 # Normalize
 --------------------------------------------------------------*/
@@ -389,14 +401,27 @@ template {
 /*--------------------------------------------------------------
 # Typography
 --------------------------------------------------------------*/
+.font-monospaced {
+	var(--font-mono);
+}
+.uppercase {
+	text-transform: uppercase;
+}
+.no-underline {
+	text-decoration: none;
+}
+.no-hover-underline:hover {
+	text-decoration: none;
+}
+
 body,
 button,
 input,
 select,
 optgroup,
 textarea {
-	color: #404040;
-	font-family: sans-serif;
+	color: #FFF;
+	font-family: var(--font-mono);
 	font-size: 16px;
 	font-size: 1rem;
 	line-height: 1.5;
@@ -469,8 +494,14 @@ html {
 }
 
 body {
-	background: #fff;
+	background: #111;
 	/* Fallback for when there is no custom background color defined. */
+}
+
+.container {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
 }
 
 hr {
@@ -614,15 +645,16 @@ textarea {
 ## Links
 --------------------------------------------------------------*/
 a {
-	color: royalblue;
+	color: var(--blue);
 }
 
 a:visited {
-	color: purple;
+	color: var(--blue);
 }
 
 a:hover, a:focus, a:active {
-	color: midnightblue;
+	color: inherit;
+	text-decoration: underline;
 }
 
 a:focus {
