@@ -25,6 +25,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 # Variables
 # Normalize
 # Typography
+# Layout
 # Elements
 # Forms
 # Navigation
@@ -51,6 +52,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 	/* Colours */
 	--blue: royalblue;
+	--white: hsl(0, 0%, 100%);
 }
 
 /*--------------------------------------------------------------
@@ -413,6 +415,12 @@ template {
 .no-hover-underline:hover {
 	text-decoration: none;
 }
+.text-white {
+	color: var(--white);
+}
+.text-hover-white:hover {
+	color: var(--white);
+}
 
 body,
 button,
@@ -477,6 +485,27 @@ mark, ins {
 
 big {
 	font-size: 125%;
+}
+
+.site-title {
+	font-size: 3rem;
+	margin: 0;
+	font-weight: normal;
+}
+.site-description {
+	font-size: 1.8rem;
+	margin: 0;
+}
+
+/*--------------------------------------------------------------
+# Layout
+--------------------------------------------------------------*/
+#masthead {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+body.home #masthead {
+	margin-bottom: 3rem;
 }
 
 /*--------------------------------------------------------------
@@ -649,7 +678,7 @@ a {
 }
 
 a:visited {
-	color: var(--blue);
+	color: inherit;
 }
 
 a:hover, a:focus, a:active {
