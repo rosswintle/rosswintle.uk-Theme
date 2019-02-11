@@ -123,6 +123,10 @@ function oiko_s_scripts() {
 
 	wp_enqueue_script( 'underscores-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), NULL, true );
 
+	if (is_front_page()) {
+		wp_enqueue_script( 'rw_terminal', get_template_directory_uri() . '/js/terminal.js', [], false, true );
+	}
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}

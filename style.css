@@ -53,6 +53,9 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	/* Colours */
 	--blue: royalblue;
 	--white: hsl(0, 0%, 100%);
+	--teal: #0DB5C0;
+	--green: #0D9D00;
+	--light-grey: #AFAFAF;
 }
 
 /*--------------------------------------------------------------
@@ -420,6 +423,15 @@ template {
 }
 .text-hover-white:hover {
 	color: var(--white);
+}
+.text-teal {
+	color: var(--teal);
+}
+.text-green {
+	color: var(--green);
+}
+.text-light-grey {
+	color: var(--light-grey);
 }
 
 body,
@@ -1054,4 +1066,30 @@ object {
 
 .gallery-caption {
 	display: block;
+}
+
+/*--------------------------------------------------------------
+## Terminal
+--------------------------------------------------------------*/
+.terminal {
+	margin-bottom: 4rem;
+}
+.username {
+	color: var(--teal);
+}
+.hostname {
+	color: var(--green);
+}
+.timestamp {
+	color: var(--light-grey);
+}
+.terminal p {
+	margin: 0;
+}
+.terminal input {
+	border: 0 none;
+	outline: none;
+	background-color: transparent;
+	width: 100%;
+	color: var(--white) !important;
 }
