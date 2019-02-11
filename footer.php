@@ -11,7 +11,13 @@
 
 ?>
 
-	</div><!-- #content -->
+			</div><!-- #content -->
+		</div><!-- .left-column -->
+		<div class="right-column">
+			<h3>Menu</h3>
+		</div>
+	</div><!-- .columns -->
+
 
 	<footer id="colophon" class="site-footer">
 		<div class="site-info">

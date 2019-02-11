@@ -500,6 +500,17 @@ big {
 /*--------------------------------------------------------------
 # Layout
 --------------------------------------------------------------*/
+.columns {
+	display: flex;
+}
+.left-column {
+	width: 66%;
+	padding-right: 0.5rem;
+}
+.right-column {
+	width: 34%;
+	padding-left: 0.5rem;
+}
 #masthead {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
