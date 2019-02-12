@@ -14,11 +14,33 @@
 
 <section id="terminal" class="terminal">
 	<p>
-		# <span class="username">you</span> @ <span class="hostname">oikos.digital</span> <span id="terminal-time" class="timestamp">[<?= (new DateTime())->format('H:i:s') ?>]</span>
+		# <span class="username">you</span> @ <span class="hostname"><a href="<?= esc_url(home_url()) ?>">rosswintle.uk</a></span> <span id="terminal-time" class="timestamp">[<?= (new DateTime())->format('H:i:s') ?>]</span>
 	</p>
 	<p>
 		<input type="text" name="terminal-input">
 	</p>
+</section>
+
+<section id="posts">
+	<h2>Latest posts</h2>
+	<ul class="posts-container">
+		<?php $posts = get_posts(); ?>
+		<?php foreach ($posts as $post) : ?>
+			<li>
+				<article>
+					<h3>
+						<a href="<?= get_permalink($post) ?>"><?= get_the_title() ?></a>
+					</h3>
+					<p class="post-meta">
+						<?= get_the_date('Y-m-d'); ?>
+					</p>
+					<p class="post-excerpt">
+						<?= get_the_excerpt($post) ?>
+					</p>
+				</article>
+			</li>
+		<?php endforeach; ?>
+	</ul>
 </section>
 
 <?php get_footer(); ?>
