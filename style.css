@@ -1169,4 +1169,8 @@ object {
 	background-color: transparent;
 	width: 100%;
 	color: var(--white) !important;
+	padding: 0;
+}
+.terminal-response {
+	color: var(--light-grey);
 }

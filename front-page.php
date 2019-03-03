@@ -13,13 +13,12 @@
 <?php get_header(); ?>
 
 <section id="terminal" class="terminal">
-	<form name=""></form>
-	<p>
-		# <span class="username">you</span> @ <span class="hostname"><a href="<?= esc_url(home_url()) ?>">rosswintle.uk</a></span> <span id="terminal-time" class="timestamp">[<?= (new DateTime())->format('H:i:s') ?>]</span>
+	<p class="terminal-header">
+		# <span class="username">you</span> @ <span class="hostname"><a href="<?= esc_url(home_url()) ?>">rosswintle.uk</a></span> <span class="timestamp">[<?= (new DateTime())->format('H:i:s') ?>]</span>
 	</p>
-	<p>
-		<input type="text" name="terminal-input">
-	</p>
+	<form id="terminal-form">
+		<input type="text" name="terminal-input" autocomplete="off">
+	</form>
 </section>
 
 <section id="posts">
