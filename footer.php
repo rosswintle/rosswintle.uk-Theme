@@ -21,15 +21,11 @@
 
 	<footer id="colophon" class="site-footer">
 		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'oiko_s' ) ); ?>"><?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'oiko_s' ), 'WordPress' );
-			?></a>
+			All content &copy Ross Wintle
 			<span class="sep"> | </span>
-			<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'oiko_s' ), 'oiko_s', '<a href="https://oikos.digital/">Ross Wintle/Oikos Digital</a>' );
-			?>
+			<a href="https://twitter.com/magicroundabout">@magicroundabout</a>
+			<span class="sep"> | </span>
+			This site uses no cookies and does not track you
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
