@@ -47,15 +47,18 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 # Variables
 --------------------------------------------------------------*/
 :root {
-	/* Fonts */
+	/* Fonts - these are system font stacks */
 	--font-mono: "SF Mono", "Monaco", "Inconsolata", "Fira Mono", "Droid Sans Mono", "Source Code Pro", monospace;
+	--font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
 	/* Colours */
-	--blue: royalblue;
+	--black: #282828;
+	--blue: hsl(230, 77%, 78%);
 	--white: hsl(0, 0%, 100%);
 	--teal: #0DB5C0;
 	--green: #0D9D00;
 	--light-grey: #AFAFAF;
+
 }
 
 /*--------------------------------------------------------------
@@ -518,11 +521,11 @@ big {
 }
 .left-column {
 	width: 66%;
-	padding-right: 0.5rem;
+	padding-right: 2rem;
 }
 .right-column {
 	width: 34%;
-	padding-left: 0.5rem;
+	padding-left: 2rem;
 }
 #masthead {
 	margin-top: 1rem;
@@ -530,6 +533,17 @@ big {
 }
 body.home #masthead {
 	margin-bottom: 3rem;
+}
+
+@media screen and (max-width: 768px) {
+	.columns {
+		display: block;
+	}
+	.left-column,
+	.right-column {
+		width: 100%;
+		padding: 1rem 0;
+	}
 }
 
 /*--------------------------------------------------------------
@@ -547,7 +561,8 @@ html {
 }
 
 body {
-	background: #111;
+	background: var(--black);
+	padding: 1rem;
 	/* Fallback for when there is no custom background color defined. */
 }
 
@@ -605,6 +620,13 @@ figure {
 table {
 	margin: 0 0 1.5em;
 	width: 100%;
+}
+
+.skip-link {
+	display: block;
+	text-align: right;
+	color: #FFF;
+	text-transform: uppercase;
 }
 
 /*--------------------------------------------------------------
@@ -947,9 +969,24 @@ a:hover, a:active {
 }
 .posts-container h3 a {
 	color: var(--white);
+	text-decoration: none;
 }
 
-
+@media screen and (max-width: 768px) {
+	.posts-container {
+		display: block;
+	}
+	.posts-container li {
+		width: 100%;
+	}
+	.posts-container h3 a:hover,
+	.posts-container h3 a:focus,
+	.posts-container h3 a:active {
+		border-top-color: transparent;
+		border-left-color: transparent;
+		border-right-color: transparent;
+	}
+}
 
 /*--------------------------------------------------------------
 ## Posts and pages
@@ -970,6 +1007,8 @@ a:hover, a:active {
 .page-content,
 .entry-content,
 .entry-summary {
+	font-family: var(--font-sans);
+	font-size: 1.2rem;
 	margin: 1.5em 0 0;
 }
 

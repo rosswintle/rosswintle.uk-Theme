@@ -13,6 +13,7 @@
 <?php get_header(); ?>
 
 <section id="terminal" class="terminal">
+	<form name=""></form>
 	<p>
 		# <span class="username">you</span> @ <span class="hostname"><a href="<?= esc_url(home_url()) ?>">rosswintle.uk</a></span> <span id="terminal-time" class="timestamp">[<?= (new DateTime())->format('H:i:s') ?>]</span>
 	</p>
