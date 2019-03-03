@@ -13,8 +13,8 @@
 
 			</div><!-- #content -->
 		</div><!-- .left-column -->
-		<div class="right-column">
-			<h3>Menu</h3>
+		<div class="right-column" id="menu">
+			<?php get_sidebar(); ?>
 		</div>
 	</div><!-- .columns -->
 

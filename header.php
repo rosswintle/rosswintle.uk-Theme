@@ -24,7 +24,7 @@
 <div id="page" class="site container">
 	<div class="columns">
 		<div class="left-column">
-			<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'oiko_s' ); ?></a>
+			<a class="skip-link" href="#menu">Menu</a>
 
 			<header id="masthead" class="site-header">
 				<div class="site-branding">
