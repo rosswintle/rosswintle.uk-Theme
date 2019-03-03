@@ -51,6 +51,10 @@ class Terminal {
 			       ----------------------------<br>
 			       <br>
 			       You should probably start by visiting the about page!`;
+		} else if (inputText.startsWith('cat')) {
+			return 'cat: No such file or directory';
+		} else if (inputText.startsWith('cd')) {
+			return 'cd: Don\'t be silly, it\'s not a REAL terminal!';
 		}
 		return 'Aha! You got the right idea, but the terminal isn\'t working yet.';
 
