@@ -24,7 +24,10 @@
 <section id="posts">
 	<h2>Latest posts</h2>
 	<ul class="posts-container">
-		<?php $posts = get_posts(); ?>
+		<?php $posts = get_posts([
+			'category__not_in' => [ 709 ],
+			'posts_per_page'   => 8,
+		]); ?>
 		<?php foreach ($posts as $post) : ?>
 			<li>
 				<article>
