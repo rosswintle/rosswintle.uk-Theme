@@ -725,10 +725,6 @@ a {
 	border: 2px solid transparent;
 }
 
-a:visited {
-	color: inherit;
-}
-
 a:hover, a:focus, a:active {
 	color: inherit;
 	border: 2px dashed var(--light-grey);
@@ -738,7 +734,7 @@ a:focus {
 	outline: thin dotted;
 }
 
-a:hover, a:active {
+a:hover, a:focus, a:active {
 	outline: 0;
 }
 
@@ -971,6 +967,13 @@ a:hover, a:active {
 	color: var(--white);
 	text-decoration: none;
 }
+.posts-container h3 a:hover,
+.posts-container h3 a:focus,
+.posts-container h3 a:active {
+	border-top-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
 
 @media screen and (max-width: 768px) {
 	.posts-container {
@@ -978,13 +981,6 @@ a:hover, a:active {
 	}
 	.posts-container li {
 		width: 100%;
-	}
-	.posts-container h3 a:hover,
-	.posts-container h3 a:focus,
-	.posts-container h3 a:active {
-		border-top-color: transparent;
-		border-left-color: transparent;
-		border-right-color: transparent;
 	}
 }
 
@@ -1148,7 +1144,8 @@ object {
 .username {
 	color: var(--teal);
 }
-.hostname {
+.hostname,
+.hostname a {
 	color: var(--green);
 }
 .timestamp {
