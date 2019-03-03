@@ -504,13 +504,22 @@ big {
 }
 
 .site-title {
-	font-size: 3rem;
+	font-size: 2rem;
 	margin: 0;
 	font-weight: normal;
 }
 .site-description {
-	font-size: 1.8rem;
+	font-size: 1.2rem;
 	margin: 0;
+	padding-bottom: 1rem;
+	border-bottom: 3px dashed var(--white);
+}
+
+body.home .site-title {
+	font-size: 3rem;
+}
+body.home .site-description {
+	font-size: 1.8rem;
 }
 
 /*--------------------------------------------------------------
