@@ -1171,6 +1171,7 @@ object {
 	color: var(--white) !important;
 	padding: 0;
 }
-.terminal-response {
+.terminal .terminal-response {
 	color: var(--light-grey);
+	margin-bottom: 2rem;
 }

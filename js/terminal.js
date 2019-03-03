@@ -25,8 +25,10 @@ class Terminal {
 
 		// Display a response
 		const responseP = document.createElement('p');
+		// I THINK that creating a text node like this escapes stuff and keeps me safe from XSS attacks
+		const responseText = document.createTextNode(this.responseTo(inputText));
 		responseP.classList = 'terminal-response';
-		responseP.innerHTML = this.responseTo(inputText) + '<br><br>';
+		responseP.appendChild(responseText);
 		this.elTerminal.insertBefore(responseP, this.elForm);
 
 		// Clear the form input
@@ -47,10 +49,7 @@ class Terminal {
 		} else if (inputText == 'pwd') {
 			return '/home/rosswintle.uk';
 		} else if (inputText == 'cat README.txt' || inputText == 'less README.txt') {
-			return `ROSS WINTLE'S PERSONAL BLOG<br>
-			       ----------------------------<br>
-			       <br>
-			       You should probably start by visiting the about page!`;
+			return `You should probably start by visiting the about page!`;
 		} else if (inputText.startsWith('cat')) {
 			return 'cat: No such file or directory';
 		} else if (inputText.startsWith('cd')) {
