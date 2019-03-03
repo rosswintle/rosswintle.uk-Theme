@@ -25,25 +25,21 @@
 <section id="posts">
 	<h2>Latest posts</h2>
 	<ul class="posts-container">
-		<?php $posts = get_posts([
-			'category__not_in' => [ 709 ],
-			'posts_per_page'   => 8,
-		]); ?>
-		<?php foreach ($posts as $post) : ?>
-			<li>
-				<article>
-					<h3>
-						<a href="<?= get_permalink($post) ?>"><?= get_the_title() ?></a>
-					</h3>
-					<p class="post-meta">
-						<?= get_the_date('Y-m-d'); ?>
-					</p>
-					<p class="post-excerpt">
-						<?= get_the_excerpt($post) ?>
-					</p>
-				</article>
-			</li>
-		<?php endforeach; ?>
+		<?php
+			global $post;
+
+			$posts = get_posts([
+				'category__not_in' => [ 709 ],
+				'posts_per_page'   => 8,
+			]);
+
+			foreach ($posts as $post) {
+				setup_postdata( $post );
+				get_template_part( 'template-parts/archive-content' );
+			}
+
+			wp_reset_postdata();
+		?>
 	</ul>
 </section>
 
