@@ -6,6 +6,15 @@ class Terminal {
 		this.elInput        = document.querySelector('#terminal input');
 		this.elForm         = document.getElementById('terminal-form');
 		this.elHeader       = document.querySelector('.terminal-header');
+		this.files    		= {
+			'about': {
+				'who-am-i': '/who',
+				'contact' : '/contact'
+			},
+			'blog': '/blog',
+			'projects': '/projects',
+		};
+		this.cwd = [];
 
 		this.elInput.focus();
 		this.elInput.select();
@@ -62,9 +71,9 @@ class Terminal {
 
 	responseTo( inputText ) {
 		if (inputText == 'ls') {
-			return 'README.txt';
+			return this.ls();
 		} else if (inputText == 'pwd') {
-			return '/home/rosswintle.uk';
+			return '/home/rosswintle.uk/' . this.cwd.join('/');
 		} else if (inputText == 'cat README.txt' || inputText == 'less README.txt') {
 			return `ROSS WINTLE'S PERSONAL BLOG
 			       ----------------------------
@@ -73,11 +82,55 @@ class Terminal {
 		} else if (inputText.startsWith('cat')) {
 			return 'cat: No such file or directory';
 		} else if (inputText.startsWith('cd')) {
-			return 'cd: Don\'t be silly, it\'s not a REAL terminal!';
+			return this.cd(inputText.split(' ')[1]);
 		}
 		return 'Aha! You got the right idea, but the terminal isn\'t working yet.';
 
 	}
+
+	ls() {
+		return this.createListing(this.currentDirectoryFiles());
+	}
+
+	currentDirectoryFiles() {
+		return this.directoryFiles(this.cwd, this.files);
+	}
+
+	directoryFiles( path, files ) {
+		if (0 === path.length) {
+			return files;
+		}
+
+		return this.directoryFiles( path.splice(1), files[path[0]] );
+	}
+
+	createListing( files ) {
+		let output = "";
+		for (let file in files) {
+			if ('string' === typeof(files[file])) {
+				// Make this a link?
+				output += ('   ' + file);
+			} else {
+				output += ('   ' + file + '/');
+			}
+		}
+		return output;
+	}
+
+	cd( directory ) {
+		const currentFiles = this.currentDirectoryFiles();
+		if ('..' === directory && this.cwd.length > 0) {
+			this.cwd.pop();
+			return '';
+		}
+		if (currentFiles.hasOwnProperty(directory) && 'object' === typeof(currentFiles[directory])) {
+			this.cwd.push(directory);
+			return '';
+		} else {
+			return 'cd: no such file or directory';
+		}
+	}
+
 
 }
 
