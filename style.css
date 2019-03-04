@@ -508,6 +508,14 @@ big {
 	margin: 0;
 	font-weight: normal;
 }
+.site-title:after {
+	display: inline-block;
+	content: 'Beta';
+	font-size: 1rem;
+	color: var(--light-grey);
+	position: relative;
+	top: -30px;
+}
 .site-description {
 	font-size: 1.2rem;
 	margin: 0;
