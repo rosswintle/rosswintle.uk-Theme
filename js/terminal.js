@@ -142,13 +142,16 @@ class Terminal {
 			if ('url' === files[file]['type']) {
 				let thisLink = document.createElement('a');
 				thisLink.href = files[file]['url'];
-				thisLink.appendChild(document.createTextNode(' ' + file));
+				thisLink.appendChild(document.createTextNode(file));
 				output.appendChild(thisLink);
 			} else if ( 'text' === files[file]['type']) {
-				output.appendChild(document.createTextNode(' ' + file));
+				output.appendChild(document.createTextNode(file));
 			} else if ( 'dir' === files[file]['type']) {
-				output.appendChild(document.createTextNode(' ' + file + '/'));
+				output.appendChild(document.createTextNode(file + '/'));
 			}
+
+			output.appendChild(document.createTextNode(' '));
+
 		}
 		return output;
 	}
