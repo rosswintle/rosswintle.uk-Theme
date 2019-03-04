@@ -84,12 +84,11 @@ class Terminal {
 	printTerminalLines( responseText ) {
 
 		const responseP = document.createElement('p');
+		responseP.classList = 'terminal-response';
 
-		if ('object' === typeof(responseText)) {
+		if (responseText instanceof Node) {
 			responseP.appendChild(responseText);
 		} else {
-			responseP.classList = 'terminal-response';
-
 			if ('string' === typeof(responseText)) {
 				responseText = [ responseText ];
 			}
@@ -112,8 +111,8 @@ class Terminal {
 			return this.ls();
 		} else if (inputText == 'pwd') {
 			return '/home/rosswintle.uk/' + this.cwd.join('/');
-		} else if (inputText.startsWith('cat')) {
-			return 'cat: No such file or directory';
+		} else if (inputText.startsWith('cat') || inputText.startsWith('less')) {
+			return this.cat(inputText.split(' ')[1]);
 		} else if (inputText.startsWith('cd')) {
 			return this.cd(inputText.split(' ')[1]);
 		}
@@ -167,6 +166,13 @@ class Terminal {
 			return '';
 		} else {
 			return 'cd: no such file or directory';
+		}
+	}
+
+	cat( file ) {
+		const currentFiles = this.currentDirectoryFiles();
+		if (currentFiles.hasOwnProperty(file) && 'text' === currentFiles[file]['type']) {
+			return currentFiles[file]['text'].split("\n");
 		}
 	}
 
