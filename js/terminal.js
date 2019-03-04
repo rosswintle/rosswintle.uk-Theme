@@ -24,12 +24,9 @@ class Terminal {
 		this.elTerminal.insertBefore(newP, this.elForm);
 
 		// Display a response
-		const responseP = document.createElement('p');
-		// I THINK that creating a text node like this escapes stuff and keeps me safe from XSS attacks
-		const responseText = document.createTextNode(this.responseTo(inputText));
-		responseP.classList = 'terminal-response';
-		responseP.appendChild(responseText);
-		this.elTerminal.insertBefore(responseP, this.elForm);
+		const response = this.responseTo(inputText)
+
+		this.printTerminalLines(response);
 
 		// Clear the form input
 		this.elInput.value = '';
@@ -43,13 +40,36 @@ class Terminal {
 		this.elTerminal.insertBefore(newHeader, this.elForm);
 	}
 
+	printTerminalLines( responseText ) {
+		const responseP = document.createElement('p');
+		responseP.classList = 'terminal-response';
+
+		if ('string' === typeof(responseText)) {
+			responseText = [ responseText ];
+		}
+
+		responseText.forEach( function (line) {
+			// I THINK that creating a text node like this escapes stuff and keeps me safe from XSS attacks
+			const responseText = document.createTextNode(line);
+			responseP.appendChild(responseText);
+			const responseBreak = document.createElement('br');
+			responseP.appendChild(responseBreak);
+		} );
+
+		this.elTerminal.insertBefore(responseP, this.elForm);
+
+	}
+
 	responseTo( inputText ) {
 		if (inputText == 'ls') {
 			return 'README.txt';
 		} else if (inputText == 'pwd') {
 			return '/home/rosswintle.uk';
 		} else if (inputText == 'cat README.txt' || inputText == 'less README.txt') {
-			return `You should probably start by visiting the about page!`;
+			return `ROSS WINTLE'S PERSONAL BLOG
+			       ----------------------------
+
+			       You should probably start by visiting the about page!`.split("\n");
 		} else if (inputText.startsWith('cat')) {
 			return 'cat: No such file or directory';
 		} else if (inputText.startsWith('cd')) {
