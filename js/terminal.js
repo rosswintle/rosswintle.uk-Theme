@@ -126,6 +126,8 @@ class Terminal {
 			return 'You are not in the sudoers file. This will be reported!';
 		} else if (inputText == 'whoami') {
 			return 'I have NO idea!';
+		} else if (inputText == 'whois rosswintle.uk') {
+			return 'Try checking the about page!';
 		} else if (inputText.startsWith('shutdown') || inputText.startsWith('halt') || inputText.startsWith('init 0')) {
 			this.terminalKilled = true;
 			window.setTimeout( function () {
