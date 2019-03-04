@@ -8,11 +8,33 @@ class Terminal {
 		this.elHeader       = document.querySelector('.terminal-header');
 		this.files    		= {
 			'about': {
-				'who-am-i': '/who',
-				'contact' : '/contact'
+				type: 'dir',
+				entries: {
+					'who-am-i': {
+						type: 'url',
+						url: '/who'
+					},
+					'contact': {
+						type: 'url',
+						url: '/contact'
+					}
+				}
 			},
-			'blog': '/blog',
-			'projects': '/projects',
+			'blog': {
+				type: 'url',
+				url: '/blog'
+			},
+			'projects': {
+				type: 'url',
+				url: '/projects'
+			},
+			'README.txt': {
+				type: 'text',
+				text: `ROSS WINTLE'S PERSONAL BLOG
+			       ----------------------------
+
+			       You should probably start by visiting the about page!`
+			}
 		};
 		this.cwd = [];
 
@@ -84,11 +106,6 @@ class Terminal {
 			return this.ls();
 		} else if (inputText == 'pwd') {
 			return '/home/rosswintle.uk/' + this.cwd.join('/');
-		} else if (inputText == 'cat README.txt' || inputText == 'less README.txt') {
-			return `ROSS WINTLE'S PERSONAL BLOG
-			       ----------------------------
-
-			       You should probably start by visiting the about page!`.split("\n");
 		} else if (inputText.startsWith('cat')) {
 			return 'cat: No such file or directory';
 		} else if (inputText.startsWith('cd')) {
@@ -111,16 +128,18 @@ class Terminal {
 			return files;
 		}
 
-		return this.directoryFiles( path.splice(1), files[path[0]] );
+		return this.directoryFiles( path.splice(1), files[path[0]]['entries'] );
 	}
 
 	createListing( files ) {
-		let output = "";
+		let output = '';
 		for (let file in files) {
-			if ('string' === typeof(files[file])) {
+			if ('url' === files[file]['type']) {
 				// Make this a link?
 				output += ('   ' + file);
-			} else {
+			} else if ( 'text' === files[file]['type']) {
+				output += ('   ' + file);
+			} else if ( 'dir' === files[file]['type']) {
 				output += ('   ' + file + '/');
 			}
 		}
@@ -135,7 +154,7 @@ class Terminal {
 			}
 			return  '';
 		}
-		if (currentFiles.hasOwnProperty(directory) && 'object' === typeof(currentFiles[directory])) {
+		if (currentFiles.hasOwnProperty(directory) && 'dir' === currentFiles[directory]['type']) {
 			this.cwd.push(directory);
 			return '';
 		} else {
