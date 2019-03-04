@@ -82,20 +82,26 @@ class Terminal {
 	}
 
 	printTerminalLines( responseText ) {
+
 		const responseP = document.createElement('p');
-		responseP.classList = 'terminal-response';
 
-		if ('string' === typeof(responseText)) {
-			responseText = [ responseText ];
-		}
-
-		responseText.forEach( function (line) {
-			// I THINK that creating a text node like this escapes stuff and keeps me safe from XSS attacks
-			const responseText = document.createTextNode(line);
+		if ('object' === typeof(responseText)) {
 			responseP.appendChild(responseText);
-			const responseBreak = document.createElement('br');
-			responseP.appendChild(responseBreak);
-		} );
+		} else {
+			responseP.classList = 'terminal-response';
+
+			if ('string' === typeof(responseText)) {
+				responseText = [ responseText ];
+			}
+
+			responseText.forEach( function (line) {
+				// I THINK that creating a text node like this escapes stuff and keeps me safe from XSS attacks
+				const responseText = document.createTextNode(line);
+				responseP.appendChild(responseText);
+				const responseBreak = document.createElement('br');
+				responseP.appendChild(responseBreak);
+			} );
+		}
 
 		this.elTerminal.insertBefore(responseP, this.elForm);
 
@@ -132,15 +138,17 @@ class Terminal {
 	}
 
 	createListing( files ) {
-		let output = '';
+		let output = document.createElement('span');
 		for (let file in files) {
 			if ('url' === files[file]['type']) {
-				// Make this a link?
-				output += ('   ' + file);
+				let thisLink = document.createElement('a');
+				thisLink.href = files[file]['url'];
+				thisLink.appendChild(document.createTextNode(' ' + file));
+				output.appendChild(thisLink);
 			} else if ( 'text' === files[file]['type']) {
-				output += ('   ' + file);
+				output.appendChild(document.createTextNode(' ' + file));
 			} else if ( 'dir' === files[file]['type']) {
-				output += ('   ' + file + '/');
+				output.appendChild(document.createTextNode(' ' + file + '/'));
 			}
 		}
 		return output;
