@@ -589,7 +589,7 @@ hr {
 }
 
 ul, ol {
-	margin: 0 0 1.5em 3em;
+	margin: 0 0 1.5em 1em;
 }
 
 ul {
@@ -632,11 +632,18 @@ table {
 }
 
 .skip-link {
-	display: block;
+	display: none;
 	text-align: right;
 	color: #FFF;
 	text-transform: uppercase;
 }
+
+@media screen and (max-width: 768px) {
+	.skip-link {
+		display: block;
+	}
+}
+
 
 /*--------------------------------------------------------------
 # Forms
@@ -944,6 +951,26 @@ a:hover, a:focus, a:active {
 
 .widget select {
 	max-width: 100%;
+}
+
+.widget ul {
+	margin-left: 0;
+	padding: 0;
+	list-style-type: none;
+}
+.widget li.current-cat,
+.widget li.current-menu-item,
+.widget li.current_page_item {
+	position: relative;
+}
+.widget li.current-cat:before,
+.widget li.current-menu-item:before,
+.widget li.current_page_item:before {
+	content: '>';
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -0.8rem;
 }
 
 /*--------------------------------------------------------------
