@@ -25,6 +25,16 @@ class Terminal {
 		});
 	}
 
+	padInt( num, digits ) {
+		if ('number' === typeof(num)) {
+			num = num.toString();
+		}
+		while (num.length < digits) {
+			num = "0" + num;
+		}
+		return num;
+	}
+
 	updateTerminal() {
 		// Copy the input line
 		const inputText = this.elInput.value;
@@ -44,7 +54,7 @@ class Terminal {
 		const newHeader     = this.elHeader.cloneNode(true);
 		const newHeaderTime = newHeader.querySelector('.timestamp');
 		const now = new Date();
-		newHeaderTime.innerHTML = `[${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}]`;
+		newHeaderTime.innerHTML = `[${this.padInt(now.getHours(), 2)}:${this.padInt(now.getMinutes(), 2)}:${this.padInt(now.getSeconds(), 2)}]`;
 
 		this.elTerminal.insertBefore(newHeader, this.elForm);
 	}
