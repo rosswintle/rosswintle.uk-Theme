@@ -37,6 +37,7 @@ class Terminal {
 			}
 		};
 		this.cwd = [];
+		this.terminalKilled = false;
 
 		this.elInput.focus();
 		this.elInput.select();
@@ -72,13 +73,17 @@ class Terminal {
 		// Clear the form input
 		this.elInput.value = '';
 
-		// Add a new "header"
-		const newHeader     = this.elHeader.cloneNode(true);
-		const newHeaderTime = newHeader.querySelector('.timestamp');
-		const now = new Date();
-		newHeaderTime.innerHTML = `[${this.padInt(now.getHours(), 2)}:${this.padInt(now.getMinutes(), 2)}:${this.padInt(now.getSeconds(), 2)}]`;
+		if (this.terminalKilled) {
+			this.elTerminal.removeChild(this.elForm);
+		} else {
+			// Add a new "header"
+			const newHeader     = this.elHeader.cloneNode(true);
+			const newHeaderTime = newHeader.querySelector('.timestamp');
+			const now = new Date();
+			newHeaderTime.innerHTML = `[${this.padInt(now.getHours(), 2)}:${this.padInt(now.getMinutes(), 2)}:${this.padInt(now.getSeconds(), 2)}]`;
 
-		this.elTerminal.insertBefore(newHeader, this.elForm);
+			this.elTerminal.insertBefore(newHeader, this.elForm);
+		}
 	}
 
 	printTerminalLines( responseText ) {
@@ -115,8 +120,25 @@ class Terminal {
 			return this.cat(inputText.split(' ')[1]);
 		} else if (inputText.startsWith('cd')) {
 			return this.cd(inputText.split(' ')[1]);
+		} else if (inputText.startsWith('man')) {
+			return 'No, man! (Seriously, this is not a real terminal!)';
+		} else if (inputText.startsWith('sudo')) {
+			return 'You are not in the sudoers file. This will be reported!';
+		} else if (inputText.startsWith('shutdown') || inputText.startsWith('halt') || inputText.startsWith('init 0')) {
+			this.terminalKilled = true;
+			window.setTimeout( function () {
+				const body = document.body;
+				document.getElementsByTagName('html')[0].removeChild(body);
+			}, 3000);
+			return 'SYSTEM IS GOING DOWN NOW!!!!';
+		} else if (inputText == 'rm -r *' || inputText == 'rm -rf *') {
+			this.terminalKilled = true;
+			return '';
+		} else if (inputText.length > 0) {
+			return 'Aha! You got the right idea, but the terminal isn\'t that clever yet.';
+		} else {
+			return '';
 		}
-		return 'Aha! You got the right idea, but the terminal isn\'t working yet.';
 
 	}
 
