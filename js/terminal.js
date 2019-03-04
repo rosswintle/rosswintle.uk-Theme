@@ -119,9 +119,11 @@ class Terminal {
 
 	cd( directory ) {
 		const currentFiles = this.currentDirectoryFiles();
-		if ('..' === directory && this.cwd.length > 0) {
-			this.cwd.pop();
-			return '';
+		if ('..' === directory) {
+			if (this.cwd.length > 0) {
+				this.cwd.pop();
+			}
+			return  '';
 		}
 		if (currentFiles.hasOwnProperty(directory) && 'object' === typeof(currentFiles[directory])) {
 			this.cwd.push(directory);
