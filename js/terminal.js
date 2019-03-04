@@ -124,6 +124,8 @@ class Terminal {
 			return 'No, man! (Seriously, this is not a real terminal!)';
 		} else if (inputText.startsWith('sudo')) {
 			return 'You are not in the sudoers file. This will be reported!';
+		} else if (inputText == 'whoami') {
+			return 'I have NO idea!';
 		} else if (inputText.startsWith('shutdown') || inputText.startsWith('halt') || inputText.startsWith('init 0')) {
 			this.terminalKilled = true;
 			window.setTimeout( function () {
