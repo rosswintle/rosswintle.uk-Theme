@@ -83,7 +83,7 @@ class Terminal {
 		if (inputText == 'ls') {
 			return this.ls();
 		} else if (inputText == 'pwd') {
-			return '/home/rosswintle.uk/' . this.cwd.join('/');
+			return '/home/rosswintle.uk/' + this.cwd.join('/');
 		} else if (inputText == 'cat README.txt' || inputText == 'less README.txt') {
 			return `ROSS WINTLE'S PERSONAL BLOG
 			       ----------------------------
