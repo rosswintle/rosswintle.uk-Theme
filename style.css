@@ -171,7 +171,8 @@ samp {
  * Add the correct font size in all browsers.
  */
 
-small {
+small,
+.small {
 	font-size: 80%;
 }
 
@@ -988,6 +989,11 @@ a:hover, a:focus, a:active {
 	left: -0.8rem;
 }
 
+.widget.maker_log li:before {
+	content: '>';
+	display: inline-block;
+	margin-right: 0.4rem;
+}
 /*--------------------------------------------------------------
 # Content
 --------------------------------------------------------------*/
