@@ -202,6 +202,9 @@ class Terminal {
 		const currentFiles = this.currentDirectoryFiles();
 		if (currentFiles.hasOwnProperty(file) && 'text' === currentFiles[file]['type']) {
 			return currentFiles[file]['text'].split("\n");
+		} else if (currentFiles.hasOwnProperty(file) && 'url' === currentFiles[file]['type']) {
+			window.location = currentFiles[file]['url'];
+			return '';
 		}
 	}
 
