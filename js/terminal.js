@@ -138,6 +138,8 @@ class Terminal {
 		} else if (inputText == 'rm -r *' || inputText == 'rm -rf *') {
 			this.terminalKilled = true;
 			return '';
+		} else if (inputText == 'help') {
+			return 'Hey! You found my text/chat/terminal. This is intended to work like a Linux command line. If you know some commands, try them! Otherwise just browse the site as normal. Thanks. Have fun!';
 		} else if (inputText.length > 0) {
 			return 'Aha! You got the right idea, but the terminal isn\'t that clever yet.';
 		} else {
