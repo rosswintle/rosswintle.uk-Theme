@@ -123,6 +123,10 @@ function oiko_s_scripts() {
 
 	wp_enqueue_script( 'underscores-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), NULL, true );
 
+	wp_enqueue_script( 'rw_cookies', get_template_directory_uri() . '/js/cookies/cookies.min.js', [], false, true );
+
+	wp_enqueue_script( 'rw_settings', get_template_directory_uri() . '/js/settings.js', ['rw_cookies'], false, true );
+
 	if (is_front_page()) {
 		wp_enqueue_script( 'rw_terminal', get_template_directory_uri() . '/js/terminal.js', [], false, true );
 	}
@@ -152,6 +156,11 @@ require get_template_directory() . '/inc/template-functions.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * User Settings/Theming
+ */
+require get_template_directory() . '/inc/user-settings.php';
 
 /**
  * Post types

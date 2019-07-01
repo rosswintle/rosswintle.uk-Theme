@@ -59,6 +59,19 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	--green: #0D9D00;
 	--light-grey: #AFAFAF;
 
+	--dark-theme-bg: var(--black);
+	--dark-theme-text: var(--white);
+
+	--light-theme-bg: var(--white);
+	--light-theme-text: var(--black);
+
+	--theme-bg: var(--dark-theme-bg);
+	--theme-text: var(--dark-theme-text);
+}
+
+:root.theme-light {
+	--theme-bg: var(--light-theme-bg);
+	--theme-text: var(--light-theme-text);
 }
 
 /*--------------------------------------------------------------
@@ -423,10 +436,10 @@ template {
 	text-decoration: none;
 }
 .text-white {
-	color: var(--white);
+	color: var(--theme-text);
 }
 .text-hover-white:hover {
-	color: var(--white);
+	color: var(--theme-text);
 }
 .text-teal {
 	color: var(--teal);
@@ -444,7 +457,7 @@ input,
 select,
 optgroup,
 textarea {
-	color: #FFF;
+	color: var(--theme-text);
 	font-family: var(--font-mono);
 	font-size: 16px;
 	font-size: 1rem;
@@ -513,7 +526,7 @@ big {
 	font-size: 1.2rem;
 	margin: 0;
 	padding-bottom: 1rem;
-	border-bottom: 3px dashed var(--white);
+	border-bottom: 3px dashed var(--theme-text);
 }
 
 body.home .site-title {
@@ -586,7 +599,7 @@ html {
 }
 
 body {
-	background: var(--black);
+	background: var(--theme-bg);
 	padding: 1rem;
 	/* Fallback for when there is no custom background color defined. */
 }
@@ -994,6 +1007,13 @@ a:hover, a:focus, a:active {
 	display: inline-block;
 	margin-right: 0.4rem;
 }
+
+.settings-area {
+	display: none;
+}
+.settings-area.open {
+	display: block;
+}
 /*--------------------------------------------------------------
 # Content
 --------------------------------------------------------------*/
@@ -1009,7 +1029,7 @@ a:hover, a:focus, a:active {
 	display: block;
 	width: 48%;
 	padding: 1.5rem 2rem;
-	border: 3px dashed var(--white);
+	border: 3px dashed var(--theme-text);
 	margin-bottom: 2rem;
 }
 .posts-container .post-meta {
@@ -1021,7 +1041,7 @@ a:hover, a:focus, a:active {
 	margin: 0;
 }
 .posts-container h3 a {
-	color: var(--white);
+	color: var(--theme-text);
 	text-decoration: none;
 }
 .posts-container h3 a:hover,
@@ -1216,7 +1236,7 @@ object {
 	outline: none;
 	background-color: transparent;
 	width: 100%;
-	color: var(--white) !important;
+	color: var(--theme-text) !important;
 	padding: 0;
 }
 .terminal .terminal-response {
