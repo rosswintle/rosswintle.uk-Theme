@@ -117,6 +117,12 @@ add_action( 'widgets_init', 'oiko_s_widgets_init' );
  * Enqueue scripts and styles.
  */
 function oiko_s_scripts() {
+	// jQuery no good!
+    if (!is_admin() && !is_user_logged_in()) {
+        wp_deregister_script('jquery');
+        wp_register_script('jquery', false);
+    }
+
 	wp_enqueue_style( 'underscores-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'underscores-navigation', get_template_directory_uri() . '/js/navigation.js', array(), NULL, true );
