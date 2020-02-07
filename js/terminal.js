@@ -34,6 +34,10 @@ class Terminal {
 			       ----------------------------
 
 			       You should probably start by visiting the about page!`
+			},
+			'uses': {
+				type: 'url',
+				url: '/uses'
 			}
 		};
 		this.cwd = [];
@@ -62,12 +66,17 @@ class Terminal {
 		// Copy the input line
 		const inputText = this.elInput.value;
 		const newP = document.createElement('p');
-		newP.innerHTML = inputText;
+		newP.innerHTML = '';
 		this.elTerminal.insertBefore(newP, this.elForm);
 
 		// Display a response
-		const response = this.responseTo(inputText)
+		const response = this.responseTo(inputText).then(
+			response => this.updateTerminalDisplay(response) );
+		// const response = this.responseTo(inputText);
+		// this.updateTerminalDisplay(response);
+	}
 
+	updateTerminalDisplay(response) {
 		this.printTerminalLines(response);
 
 		// Clear the form input
@@ -111,7 +120,7 @@ class Terminal {
 
 	}
 
-	responseTo( inputText ) {
+	async responseTo( inputText ) {
 		if (inputText == 'ls') {
 			return this.ls();
 		} else if (inputText == 'pwd') {
@@ -135,11 +144,13 @@ class Terminal {
 				document.getElementsByTagName('html')[0].removeChild(body);
 			}, 3000);
 			return 'SYSTEM IS GOING DOWN NOW!!!!';
-		} else if (inputText == 'rm -r *' || inputText == 'rm -rf *') {
+		} else if (inputText == 'rm -r *' || inputText == 'rm -rf *' || inputText == 'rm -rf /') {
 			this.terminalKilled = true;
 			return '';
 		} else if (inputText == 'help') {
 			return 'Hey! You found my text/chat/terminal. This is intended to work like a Linux command line. If you know some commands, try them! Otherwise just browse the site as normal. Thanks. Have fun!';
+		} else if (inputText.startsWith('find')) {
+			return this.find(inputText.split(' ').slice(1).join(' '));
 		} else if (inputText.length > 0) {
 			return 'Aha! You got the right idea, but the terminal isn\'t that clever yet.';
 		} else {
@@ -164,7 +175,7 @@ class Terminal {
 		return this.directoryFiles( path.splice(1), files[path[0]]['entries'] );
 	}
 
-	createListing( files ) {
+	createListing( files, useBreaks=false ) {
 		let output = document.createElement('span');
 		for (let file in files) {
 			if ('url' === files[file]['type']) {
@@ -172,6 +183,9 @@ class Terminal {
 				thisLink.href = files[file]['url'];
 				thisLink.appendChild(document.createTextNode(file));
 				output.appendChild(thisLink);
+				if (useBreaks) {
+					output.appendChild(document.createElement('br'));
+				}
 			} else if ( 'text' === files[file]['type']) {
 				output.appendChild(document.createTextNode(file));
 			} else if ( 'dir' === files[file]['type']) {
@@ -210,6 +224,25 @@ class Terminal {
 		}
 	}
 
+	async find ( searchString ) {
+		let response = await fetch('/wp-json/wp/v2/search/?search=' + searchString + '&type=post');
+		if (response.status !== 200) {
+			return 'error';
+		}
+		let json = await response.json();
+		if (json.length === 0) {
+			return 'nothing found';
+		}
+		console.dir(json);
+		let fileList = {};
+		json.forEach( function(item) {
+			fileList[item.title] = {
+				'type': 'url',
+				'url': item.url
+			};
+		})
+		return this.createListing(fileList, true);
+	}
 
 }
 
