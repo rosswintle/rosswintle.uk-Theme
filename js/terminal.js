@@ -63,11 +63,15 @@ class Terminal {
 	}
 
 	updateTerminal() {
+
 		// Copy the input line
 		const inputText = this.elInput.value;
 		const newP = document.createElement('p');
-		newP.innerHTML = '';
+		newP.innerHTML = inputText;
 		this.elTerminal.insertBefore(newP, this.elForm);
+
+		// Clear the form input
+		this.elInput.value = '';
 
 		// Display a response
 		const response = this.responseTo(inputText).then(
@@ -78,9 +82,6 @@ class Terminal {
 
 	updateTerminalDisplay(response) {
 		this.printTerminalLines(response);
-
-		// Clear the form input
-		this.elInput.value = '';
 
 		if (this.terminalKilled) {
 			this.elTerminal.removeChild(this.elForm);
