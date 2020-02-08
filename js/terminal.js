@@ -240,7 +240,11 @@ class Terminal {
 				'type': 'url',
 				'url': item.url
 			};
-		})
+		});
+		fileList['More results'] = {
+			'type': 'url',
+			'url': '/?s=' + searchString
+		};
 		return this.createListing(fileList, true);
 	}
 
