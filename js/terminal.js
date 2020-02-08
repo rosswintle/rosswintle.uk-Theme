@@ -225,7 +225,7 @@ class Terminal {
 	}
 
 	async find ( searchString ) {
-		let response = await fetch('/wp-json/wp/v2/search/?search=' + searchString + '&type=post');
+		let response = await fetch('/wp-json/wp/v2/search/?search=' + searchString + '&type=post&subtype=post');
 		if (response.status !== 200) {
 			return 'error';
 		}
