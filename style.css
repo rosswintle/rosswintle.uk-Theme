@@ -1011,6 +1011,17 @@ a:hover, a:focus, a:active {
 	margin-right: 0.4rem;
 }
 
+.widget .display-posts-listing ul {
+}
+.widget .display-posts-listing li:before {
+	margin-bottom: 0.5rem;
+}
+.widget .display-posts-listing li:before {
+	display: inline-block;
+	content: '>';
+	margin-right: 0.5rem;
+}
+
 .settings-area {
 	display: none;
 }
