@@ -990,6 +990,25 @@ a:hover, a:focus, a:active {
 	padding: 0;
 	list-style-type: none;
 }
+.widget li {
+	padding-left: 1rem;
+	margin-bottom: 0.2rem;
+	position: relative;
+}
+
+.widget li:before {
+	display: block;
+	content: '>';
+	margin-right: 0.5rem;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.widget.widget_nav_menu li:before {
+	display: none;
+}
+
 .widget li.current-cat,
 .widget li.current-menu-item,
 .widget li.current_page_item {
@@ -1002,25 +1021,15 @@ a:hover, a:focus, a:active {
 	display: block;
 	position: absolute;
 	top: 0;
-	left: -0.8rem;
+	left: 0;
 }
 
-.widget.maker_log li:before {
+/* .widget.maker_log li:before {
 	content: '>';
 	display: inline-block;
 	margin-right: 0.4rem;
-}
+} */
 
-.widget .display-posts-listing ul {
-}
-.widget .display-posts-listing li:before {
-	margin-bottom: 0.5rem;
-}
-.widget .display-posts-listing li:before {
-	display: inline-block;
-	content: '>';
-	margin-right: 0.5rem;
-}
 
 .settings-area {
 	display: none;
