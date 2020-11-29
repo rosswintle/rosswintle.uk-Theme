@@ -67,11 +67,13 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 	--theme-bg: var(--dark-theme-bg);
 	--theme-text: var(--dark-theme-text);
+	--theme-text-highlight: #444;
 }
 
 :root.theme-light {
 	--theme-bg: var(--light-theme-bg);
 	--theme-text: var(--light-theme-text);
+	--theme-text-highlight: #CCC;
 }
 
 /*--------------------------------------------------------------
@@ -504,6 +506,8 @@ code, kbd, tt, var {
 	font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
 	font-size: 15px;
 	font-size: 0.9375rem;
+	background-color: #555;
+	padding: 0.1rem 0.5rem;
 }
 
 abbr, acronym {
