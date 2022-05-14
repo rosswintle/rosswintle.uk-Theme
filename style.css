@@ -490,6 +490,11 @@ blockquote p {
     margin-top: 0;
 }
 
+figcaption {
+    font-style: italic;
+    font-size: 1rem;
+}
+
 address {
 	margin: 0 0 1.5em;
 }
