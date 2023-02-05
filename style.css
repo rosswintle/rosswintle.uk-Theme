@@ -1294,6 +1294,7 @@ object {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin-bottom: 4rem;
 }
 .posts-pagination a,
 .posts-pagination > span {
