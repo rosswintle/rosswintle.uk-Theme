@@ -689,6 +689,10 @@ table {
 	}
 }
 
+.archive-description {
+	margin-bottom: 2rem;
+}
+
 
 /*--------------------------------------------------------------
 # Forms
@@ -1061,12 +1065,19 @@ a:hover, a:focus, a:active {
 	flex-wrap: wrap;
 	justify-content: space-between;
 }
+.posts-container-microblog {
+	justify-content: center;
+}
 .posts-container li {
 	display: block;
 	width: 48%;
 	padding: 1.5rem 2rem;
 	border: 3px dashed var(--theme-text);
 	margin-bottom: 2rem;
+}
+.posts-container-microblog li {
+	width: 80%;
+	max-width: 500px;
 }
 .posts-container .post-meta {
 	margin: 0;
@@ -1307,4 +1318,36 @@ object {
 		display: block;
 		padding: 0 0.5rem;
 	}
+}
+
+/*--------------------------------------------------------------
+## Twitter stuff
+--------------------------------------------------------------*/
+body.single-birdsite_tweet .entry-meta {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+.tweet-date {
+	color: var(--teal);
+	margin-bottom: 0.5rem;
+}
+.tweet-link {
+	font-size: 0.8rem;
+}
+body.single-birdsite_tweet .entry-content {
+	margin-top: 0;
+}
+body.single-birdsite_tweet article {
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+	padding: 1.5rem 2rem;
+	border: 3px dashed var(--theme-text);
+}
+
+.user-mention {
+	color: var(--teal);
+}
+.hashtag {
+	color: var(--green);
 }

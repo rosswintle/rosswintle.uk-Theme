@@ -16,13 +16,20 @@ get_header(); ?>
 		if ( have_posts() ) : ?>
 
 			<header class="page-header">
-				<h1 class="page-title"><?php
-					/* translators: %s: search query. */
-					printf( esc_html__( 'Search Results for: %s', 'oiko_s' ), '<span>' . get_search_query() . '</span>' );
-				?></h1>
+				<h1 class="page-title">
+					<?php
+						if ( is_post_type_archive('birdsite_tweet') ) {
+							/* translators: %s: search query. */
+							printf( esc_html__( 'Tweet archive search results for: %s', 'oiko_s' ), '<span>' . get_search_query() . '</span>' );
+						} else {
+							/* translators: %s: search query. */
+							printf( esc_html__( 'Search Results for: %s', 'oiko_s' ), '<span>' . get_search_query() . '</span>' );
+						}
+					?>
+				</h1>
 			</header><!-- .page-header -->
 
-			<ul class="posts-container">
+			<ul class="posts-container <?php echo is_post_type_archive('birdsite_tweet') ? 'posts-container-microblog' : '' ?>">
 
 				<?php
 				/* Start the Loop */
