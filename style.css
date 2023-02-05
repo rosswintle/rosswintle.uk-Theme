@@ -1286,3 +1286,24 @@ object {
 .syntaxhighlighter {
 	padding: 1rem 0.2rem;
 }
+
+/*--------------------------------------------------------------
+## Pagination
+--------------------------------------------------------------*/
+.posts-pagination {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.posts-pagination a,
+.posts-pagination > span {
+	display: block;
+	padding: 0 1rem;
+}
+@media screen and (max-width: 500px) {
+	.posts-pagination a,
+	.posts-pagination > span {
+		display: block;
+		padding: 0 0.5rem;
+	}
+}

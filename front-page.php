@@ -22,24 +22,44 @@
 </section>
 
 <section id="posts">
-	<h2>Latest posts</h2>
+	<h2>
+		<?php echo ( get_query_var('page') > 1 ? ('Page ' . get_query_var('page')) : 'Latest posts' ) ?>
+	</h2>
+
 	<ul class="posts-container">
 		<?php
 			global $post;
 
-			$posts = get_posts([
+			$homepage_query = new WP_Query([
 				'category__not_in' => [ 709 ],
 				'posts_per_page'   => 8,
+				'paged' 		   => get_query_var('page'),
 			]);
+
+			$posts = $homepage_query->posts;
 
 			foreach ($posts as $post) {
 				setup_postdata( $post );
 				get_template_part( 'template-parts/archive-content' );
 			}
-
-			wp_reset_postdata();
 		?>
 	</ul>
+
+	<div class="posts-pagination">
+		<?php
+			echo paginate_links([
+				'base'      => home_url( '/%_%' ),
+				'format'    => 'page/%#%',
+				'current'   => max( 1, get_query_var('page') ),
+				'total'     => $homepage_query->max_num_pages,
+				'prev_text' => __('«'),
+				'next_text' => __('»'),
+			]);
+		?>
+	</div>
+
+	<?php wp_reset_postdata(); ?>
+
 </section>
 
 <?php get_footer(); ?>
