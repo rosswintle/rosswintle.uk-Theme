@@ -32,5 +32,59 @@
 
 <?php wp_footer(); ?>
 
+<script>
+	function isSlowConnection() {
+		if ( ! navigator?.connection?.type && ! navigator?.connection?.effectiveType ) {
+			return true;
+		}
+
+		if ( navigator?.connection?.type &&
+			navigator.connection.type !== 'wifi' &&
+			navigator.connection.type !== 'ethernet'
+		) {
+			return true;
+		}
+
+		if ( navigator?.connection?.effectiveType && (
+			navigator.connection.effectiveType === 'slow-2g' ||
+			navigator.connection.effectiveType === '2g' ||
+			navigator.connection.effectiveType === '3g'
+			)
+		) {
+			return true;
+		}
+
+		return false;
+	}
+
+	function isLocalLink(url) {
+		const currentURL = new URL(window.location.href);
+		const linkURL = new URL(url);
+
+		return currentURL.host === linkURL.host;
+	}
+
+	function preloadOnHover() {
+		const linkElements = document.getElementsByTagName('a');
+
+		Array.from(linkElements).forEach( linkElement => {
+			linkElement.addEventListener('mouseenter', () => {
+				if (! isLocalLink(linkElement.href)) {
+					return;
+				}
+
+				const preLoadLink = document.createElement('link');
+				preLoadLink.rel = 'prefetch';
+				preLoadLink.href = linkElement.href;
+				document.head.appendChild(preLoadLink);
+			})
+		})
+	};
+
+	if (! isSlowConnection()) {
+		preloadOnHover();
+	}
+</script>
+
 </body>
 </html>
