@@ -21,9 +21,7 @@
 
 	<footer id="colophon" class="site-footer">
 		<div class="site-info">
-			All content &copy Ross Wintle
-			<span class="sep"> | </span>
-			<a href="https://twitter.com/magicroundabout">@magicroundabout</a>
+			All content &copy <a href="https://rw.omg.lol/">Ross Wintle</a>
 			<span class="sep"> | </span>
 			This site uses no cookies and does not track you
 		</div><!-- .site-info -->
