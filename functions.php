@@ -181,3 +181,10 @@ foreach(glob(get_template_directory() . "/inc/post-types/*.php") as $file){
 foreach(glob(get_template_directory() . "/inc/widgets/*.php") as $file){
     require $file;
 }
+
+function my_mce4_options( $init )
+{
+	$init['textcolor_map'] = '["e14d43", "Color 1 Name", "d83131", "Color 2 Name", "ed1c24", "Color 3 Name", "f99b1c", "Color 4 Name" ]';
+	return $init;
+}
+add_filter('tiny_mce_before_init', 'my_mce4_options');
