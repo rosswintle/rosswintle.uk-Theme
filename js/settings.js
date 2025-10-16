@@ -1,38 +1,46 @@
 class Settings {
 
 	constructor() {
-		this.mode = 'dark';
-		this.settingsButton = document.getElementById('settings-button');
-		this.settingsArea = document.getElementById('settings-area');
-		this.themeRadioButtons = document.querySelectorAll('input[name="user-theme"]');
-
 		/* Set the theme */
-		const theme = document.querySelector('input[name="user-theme"]:checked').value;
-		document.documentElement.classList.add(`theme-${theme}`);
+		document.addEventListener('DOMContentLoaded', this.addButtonHandlers);
+	}
+
+	addButtonHandlers() {
+		console.log('Adding handlers');
+
+		const settingsButton = document.getElementById('settings-button');
+		const settingsArea = document.getElementById('settings-area');
+		const themeRadioButtons = document.querySelectorAll('input[name="user-theme"]');
+
+
+		// Set the right radio button to on
+		const theme = localStorage.getItem('site-theme');
+		if (theme) {
+			document.documentElement.classList.add(`theme-${theme}`);
+			document.querySelector(`input[name="user-theme"][value="${theme}"]`).checked = true;
+		}
 
 		/* Event handler for expanding the settings */
-		this.settingsButton.addEventListener( 'click',
+		settingsButton.addEventListener('click',
 			function (e) {
 				e.preventDefault();
-				rw_settings.settingsArea.classList.toggle('open');
+				settingsArea.classList.toggle('open');
 			});
 
 		/* Event handler for theme radio buttons */
-		this.themeRadioButtons.forEach(
+		themeRadioButtons.forEach(
 			function (item) {
 				item.addEventListener('click',
-					function(e) {
+					function (e) {
 						const newTheme = e.target.value;
-						const oldTheme = docCookies.getItem('rw_user_theme');
-						docCookies.setItem('rw_user_theme', newTheme, null, '/');
+						const oldTheme = localStorage.getItem('site-theme');
+						localStorage.setItem('site-theme', newTheme);
 						document.documentElement.classList.remove(`theme-${oldTheme}`);
 						document.documentElement.classList.add(`theme-${newTheme}`);
 					});
-			});
-
-
+			}
+		);
 	}
-
 }
 
 const rw_settings = new Settings();
