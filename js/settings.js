@@ -6,8 +6,6 @@ class Settings {
 	}
 
 	addButtonHandlers() {
-		console.log('Adding handlers');
-
 		const settingsButton = document.getElementById('settings-button');
 		const settingsArea = document.getElementById('settings-area');
 		const themeRadioButtons = document.querySelectorAll('input[name="user-theme"]');
